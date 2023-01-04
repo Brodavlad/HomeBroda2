@@ -24,3 +24,18 @@ aws ec2 create-nat-gateway --subnet-id subnet-01a1d5bd8ff785c90 --allocation-id 
 
 ##create route table
 aws ec2 create-route-table --vpc-id vpc-00a67537573b9bd10
+
+##tag the first route table as public
+aws ec2 create-tags --resources rtb-0c367934250368a2b --tags Key=public,Value=public
+
+##creating a routes for routes table
+aws ec2 create-route --route-table-id rtb-0c367934250368a2b --destination-cidr-block 0.0.0.0/0 --gateway-id igw-0481d6693b68a26ea
+
+##associate route table to subnet
+aws ec2 associate-route-table --route-table-id rtb-0c367934250368a2b --subnet-id subnet-01a1d5bd8ff785c90
+
+
+##create key pair
+aws ec2 create-key-pair --key-name cli-keyPair --query 'KeyMaterial' --output text > cli-keyPair.pem
+
+##create ec2 instance
