@@ -16,5 +16,11 @@ aws ec2 create-internet-gateway
 
 ##attach gateway to net1
 aws ec2 attach-internet-gateway --internet-gateway-id igw-0f7b76eedde6cfc73 --vpc-id vpc-065ce59e9d41ce119
-##obtain external ip
+
+##create ellastic ip
 aws ec2 allocate-address --domain vpc
+##connecting nat to elastic ip
+aws ec2 create-nat-gateway --subnet-id subnet-01a1d5bd8ff785c90 --allocation-id eipalloc-097b1ba265e0afdce
+
+##create route table
+aws ec2 create-route-table --vpc-id vpc-00a67537573b9bd10
