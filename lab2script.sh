@@ -17,7 +17,7 @@ aws ec2 create-tags --resources $SUBNET_PRIVATE_ID --tags Key=private,Value=priv
 GATEWAY_ID=`aws ec2 create-internet-gateway --query InternetGateway.InternetGatewayId --output text`
 
 ##attach gateway to net1
-aws ec2 attach-internet-gateway --vpc-id $VPC_ID --internet-gateway-id $GATEWAY_ID 
+aws ec2 attach-internet-gateway --vpc-id $VPS_ID --internet-gateway-id $GATEWAY_ID 
 
 ##create custom route table
 ROUTE_ID=`aws ec2 create-route-table --vpc-id $VPS_ID --query RouteTable.RouteTableId --output text`
