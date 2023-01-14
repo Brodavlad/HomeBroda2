@@ -1,15 +1,15 @@
 #!/bin/bash
 
-## create vpc (not default!!) (put 10.0.0.., not 10.10.0..)
-VPS_ID=`aws ec2 create-vpc --cidr-block 10.0.0.0/16 --query Vpc.VpcId --output text`
+## create vpc (not default!!) (put 10.10.0.., not 10.0.0..)
+VPS_ID=`aws ec2 create-vpc --cidr-block 10.10.0.0/16 --query Vpc.VpcId --output text`
 
 ## creating subnets
 ##public
-SUBNET_PUBLIC_ID=`aws ec2 create-subnet --vpc-id $VPS_ID --cidr-block 10.0.1.0/24 --query Subnet.SubnetId --output text`
+SUBNET_PUBLIC_ID=`aws ec2 create-subnet --vpc-id $VPS_ID --cidr-block 10.10.1.0/24 --query Subnet.SubnetId --output text`
 ##tag subnet as public
 aws ec2 create-tags --resources $SUBNET_PUBLIC_ID --tags Key=public,Value=public 
 ##private
-SUBNET_PRIVATE_ID=`aws ec2 create-subnet --vpc-id $VPS_ID --cidr-block 10.0.2.0/24 --query Subnet.SubnetId --output text`
+SUBNET_PRIVATE_ID=`aws ec2 create-subnet --vpc-id $VPS_ID --cidr-block 10.10.2.0/24 --query Subnet.SubnetId --output text`
 ##tag subnet as private 
 aws ec2 create-tags --resources $SUBNET_PRIVATE_ID --tags Key=private,Value=private 
 
