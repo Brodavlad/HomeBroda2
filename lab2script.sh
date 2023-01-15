@@ -43,7 +43,7 @@ GROUP_ID=`aws ec2 create-security-group --group-name SSHAccess --description "se
 aws ec2 authorize-security-group-ingress --group-id $GROUP_ID --protocol tcp --port 22 --cidr 0.0.0.0/0
 
 ## launch instance in public subnet
-INSTANCE_ID=`aws ec2 run-instances --image-id ami-0a261c0e5f51090b1 --count 1 --instance-type t2.micro --key-name keyBroda --security-group-ids $GROUP_ID --subnet-id $SUBNET_PUBLIC_ID --query Instances[0].InstanceId --output text`
+INSTANCE_ID=`aws ec2 run-instances --image-id ami-0b5eea76982371e91 --count 1 --instance-type t2.micro --key-name keyBroda --security-group-ids $GROUP_ID --subnet-id $SUBNET_PUBLIC_ID --query Instances[0].InstanceId --output text`
 aws ec2 modify-vpc-attribute --enable-dns-hostnames --vpc-id $VPS_ID 
 
 ## Retrieve IP address
